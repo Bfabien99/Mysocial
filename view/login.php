@@ -1,8 +1,11 @@
 <?php
-$emailval = $passwordval = "";
+
     if ( isset($_SESSION['email']) && isset($_SESSION['password']) ) {
         $emailval =  $_SESSION['email'];
         $passwordval =  $_SESSION['password'];
+    }
+    else{
+      $emailval = $passwordval = "";  
     }
 ?>
 <!DOCTYPE html>
@@ -23,9 +26,9 @@ $emailval = $passwordval = "";
         </div>
         <div class="right">
             <form action="" method="POST">
-                <input type="text" name="" id="" placeholder="number or email" value="<?= $emailval ?>">
-                <input type="password" name="" id="" placeholder="password" value="<?= $passwordval ?>">
-                <button type="submit">connect</button>
+                <input type="email" name="email" placeholder="email" value="<?= $emailval ?>">
+                <input type="password" name="password" placeholder="password" value="<?= $passwordval ?>">
+                <input type="submit" value="login" name="login">
                 <a href="/Mysocial/forget">forget password ?</a>
             </form>
         </div>

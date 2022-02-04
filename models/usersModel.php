@@ -44,4 +44,14 @@
             return $result;
         }
 
+        public function verify($email,$password)
+        {
+            $db = $this->dbConnect();
+            $query = $db->prepare('SELECT user_email, user_password FROM '.$this->table.' WHERE user_email = '.'"'.$email.'"'.' AND user_password = '.'"'.md5($password).'"');
+            $query->execute();
+            $result = $query->fetch();
+            return $result;
+        }
+
+
     }
