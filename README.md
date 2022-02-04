@@ -38,5 +38,17 @@ Le nombre de j’aime
 
 Le nombre d’amis
 # Mysocial
+
+# User db
+- id (primary)
+- nom *
+- prenom *
+- numéro * (unique)
+- email (unique)
+- mot de passe *
+- date de naissance *
+- genre *
+- photo
+- domicile
 # #####let's_try#####
 
