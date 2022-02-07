@@ -80,6 +80,10 @@ $router->map('GET',"/Mysocial/profile",function()
 });
 $router->map('POST',"/Mysocial/profile",function()
 {   
+    if (!empty($_POST["userpost"])) {
+        $postController = new posts();
+        $save = $postController->save($_POST["userpost"],$_SESSION["email"]);
+    }
     require 'view/profile.php'; 
 });
 

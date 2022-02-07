@@ -12,4 +12,11 @@
             return $callModel;
         }
 
+        public function getAll(){
+            $initModel = new PostsModel();
+            $callModel = $initModel->getAll();
+
+            return $callModel;
+        }
+
     }

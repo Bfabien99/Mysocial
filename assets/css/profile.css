@@ -1,33 +1,28 @@
 .container{
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4,1fr);
     grid-template-rows: auto;
     grid-gap: 1em;
 }
 
+.container div {
+    padding: 5px;
+}
+
 .top{
-    background-color: red;
+    border: 1px solid black;
+    grid-column: 1/span 4;
+
+}
+
+.left{
+    border: 1px solid rgb(124, 20, 20);
+    grid-column: 1;
     position: sticky;
     top: 0px;
 }
 
 .content{
-    display: grid;
-    grid-template-rows: auto auto auto;
-    grid-template-areas: "l p"
-    "l m"
-    "l m";
-
-}
-
-.post{
-    grid-area: p;
-}
-
-.left{
-    grid-area: l;
-}
-
-.main{
-    grid-area: m;
+    border: 1px solid rgb(16, 97, 190);
+    grid-column: 2/span 3;
 }

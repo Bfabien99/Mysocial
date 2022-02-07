@@ -37,4 +37,12 @@
             return $result;
         }
 
+        public function getAll(){
+            $db = $this->dbConnect();
+            $query = $db->prepare('SELECT * FROM '.$this->table.' ORDER BY id DESC');
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
+
     }
