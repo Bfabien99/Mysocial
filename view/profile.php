@@ -53,7 +53,7 @@
                 <li><a href="">Notification</a></li>
                 <li><a href="">Update information</a></li>
                 <li><a href="">Create invitation Link</a></li>
-                <li><a href="">Log out</a></li>
+                <li><a href="/Mysocial/profile/deconnect">Log out</a></li>
             </ul>
         </div>
 

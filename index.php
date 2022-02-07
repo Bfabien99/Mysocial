@@ -84,9 +84,16 @@ $router->map('POST',"/Mysocial/profile",function()
         $postController = new posts();
         $save = $postController->save($_POST["userpost"],$_SESSION["email"]);
     }
-    require 'view/profile.php'; 
+    require 'view/profile.php';
+    $_POST["userpost"] = "";
 });
 
+
+$router->map('GET',"/Mysocial/profile/deconnect",function()
+{   
+    unset($_SESSION["email"],$_SESSION["password"]);
+    header('Location:/Mysocial');
+});
 
 
 $match = $router->match();
