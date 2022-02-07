@@ -25,10 +25,10 @@
             }
         }
 
-        public function create($name,$fname,$email,$address,$phone,$gender,$birth,$password)
+        public function create($name,$fname,$email,$address,$phone,$gender,$birth,$password,$picture)
         {
             $db = $this->dbConnect();
-            $query = $db->prepare('INSERT INTO '.$this->table.' SET user_name = :name, user_firstname = :fname, user_email = :email, user_address = :address, user_phone = :phone, user_gender = :gender, user_birth = :birth, user_password = :password, created_at = :created_at');
+            $query = $db->prepare('INSERT INTO '.$this->table.' SET name = :name, firstname = :fname, email = :email, address = :address, phone = :phone, gender = :gender, birth = :birth, password = :password, picture = :picture');
             $result = $query->execute([
                 'name' => $name,
                 'fname' => $fname,
@@ -38,7 +38,7 @@
                 'gender' => $gender,
                 'birth' => $birth,
                 'password' => $password,
-                'created_at' => date('Y-m-d')
+                'picture' => $picture
             ]);
 
             return $result;
@@ -47,11 +47,27 @@
         public function verify($email,$password)
         {
             $db = $this->dbConnect();
-            $query = $db->prepare('SELECT user_email, user_password FROM '.$this->table.' WHERE user_email = '.'"'.$email.'"'.' AND user_password = '.'"'.md5($password).'"');
+            $query = $db->prepare('SELECT email, password FROM '.$this->table.' WHERE email = '.'"'.$email.'"'.' AND password = '.'"'.md5($password).'"');
             $query->execute();
             $result = $query->fetch();
             return $result;
         }
 
+        public function getAll()
+        {
+            $db = $this->dbConnect();
+            $query = $db->prepare('SELECT * FROM '.$this->table.' ORDER BY id DESC');
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
+
+        public function userinfo($email){
+            $db = $this->dbConnect();
+            $query = $db->prepare('SELECT * FROM '.$this->table.' WHERE email = '.'"'.$email.'"');
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        }
 
     }

@@ -13,10 +13,10 @@
         }
 
 
-        public function save($name,$fname,$email,$address,$phone,$gender,$birth,$password)
+        public function save($name,$fname,$email,$address,$phone,$gender,$birth,$password,$picture)
         {
             $initModel = new usersModel();
-            $callModel = $initModel->create($name,$fname,$email,$address,$phone,$gender,$birth,$password);
+            $callModel = $initModel->create($name,$fname,$email,$address,$phone,$gender,$birth,$password,$picture);
 
             return $callModel;
         }
@@ -29,5 +29,17 @@
             return $callModel;
         }
 
+        public function getAll()
+        {
+            $initModel = new usersModel();
+            $callModel = $initModel->getAll();
+            return $callModel;
+        }
+
+        public function userinfo($email){
+            $initModel = new usersModel();
+            $callModel = $initModel->userinfo($email);
+            return $callModel;
+        }
 
     }
