@@ -11,7 +11,23 @@ $router->map('GET',"/Mysocial/",function()
     require 'view/login.php'; 
 });
 $router->map('POST',"/Mysocial/",function()
-{
+{   
+    $initController = new users();
+    if ( !empty($_POST["email"]) && !empty($_POST["password"])) {
+        $callController = $initController->check($_POST["email"],$_POST["password"]);
+        if($callController){
+            $_SESSION["email"] = $_POST["email"];
+            $_SESSION["password"] = $_POST["password"];
+        }
+        else {
+            $msg = "Wrong password or Email";
+            echo "<div class ='error'>".$msg."</div>";
+        }
+    }
+    else {
+        $msg = "Fill all input field";
+        echo "<div class ='error'>".$msg."</div>";
+    }
     if ($_SESSION["email"] == $_POST["email"] && $_SESSION["password"] == $_POST["password"] ) {
         header('location:/Mysocial/profile');
     }
@@ -83,9 +99,13 @@ $router->map('POST',"/Mysocial/profile",function()
     if (!empty($_POST["userpost"])) {
         $postController = new posts();
         $save = $postController->save($_POST["userpost"],$_SESSION["email"]);
+        require 'view/profile.php';
     }
-    require 'view/profile.php';
-    $_POST["userpost"] = "";
+    else {
+        header('Location:/Mysocial/profile');
+        die;
+    }
+    
 });
 
 

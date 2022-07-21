@@ -1,23 +1,3 @@
-<?php
-    $msg = false;
-    $password = $_SESSION["password"] ?? "";
-    $email = $_SESSION["email"] ?? "";
-    $initController = new users();
-    if ( !empty($_POST["email"]) && !empty($_POST["password"])) {
-        $callController = $initController->check($_POST["email"],$_POST["password"]);
-        if($callController){
-            $_SESSION["email"] = $_POST["email"];
-            $_SESSION["password"] = $_POST["password"];
-        }
-        else {
-            $msg = "Wrong password or Email";
-        }
-    }
-    else {
-        $msg = "Fill all input field";
-    }
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,18 +24,15 @@
             <form action="" method="post">
                 <div class="group">
                     <label for="">Email</label>
-                    <input type="email" name="email" value="<?= $email;?>">
+                    <input type="email" name="email" value="<?= $_SESSION["email"] ?? "";?>">
                 </div>
                 <div class="group">
                     <label for="">Password</label>
-                    <input type="password" name="password" value="<?= $password;?>">
+                    <input type="password" name="password" value="<?= $_SESSION["password"] ?? "";?>">
                 </div>
                 <input type="submit" value="LogIn" name="login">
             </form>
             <a href="">Forget password?</a>
-            <?php if($msg == true):?>
-                <div class="error"><?= $msg; ?></div>
-            <?php endif;?>
         </div>
 
     </div>
